@@ -6,19 +6,6 @@
             "base_currency" : "BTC",
             "quote_currency" : "GBP",
             "live" : 0,
-            "sellatloss" : 0,
-            "sellatresistance" : 0,
-            "trailingstoploss" : -1.5,
-            "trailingstoplosstrigger" : 5,
-            "nosellmaxpcnt" : 3,
-            "nosellminpcnt" : -3,
-            "disablebullonly" : 0,
-            "disablebuynearhigh" : 1,
-            "disablebuymacd" : 0,
-            "disablebuyobv" : 1,
-            "disablebuyelderray" : 0,
-            "disablefailsafefibonaccilow" : 1,
-            "disableprofitbankreversal" : 0,
             "disabletracker" : 1,
             "disabletelegram" : 1,
             "autorestart" : 0,
@@ -34,25 +21,38 @@
             "base_currency" : "BTC",
             "quote_currency" : "GBP",
             "live" : 0,
-            "sellatloss" : 0,
-            "sellatresistance" : 0,
-            "trailingstoploss" : -1.5,
-            "trailingstoplosstrigger" : 5,
-            "nosellmaxpcnt" : 3,
-            "nosellminpcnt" : -3,
-            "disablebullonly" : 0,
-            "disablebuynearhigh" : 1,
-            "disablebuymacd" : 0,
-            "disablebuyobv" : 1,
-            "disablebuyelderray" : 0,
-            "disablefailsafefibonaccilow" : 1,
-            "disableprofitbankreversal" : 0,
             "disabletracker" : 1,
             "disabletelegram" : 1,
             "autorestart" : 0,
             "graphs" : 0,
             "verbose" : 0,
             "stats" : 0
+        }
+    },
+    "strategy": {
+        "default_coinbasepro": {
+            "exchange" : "coinbasepro",
+            "module" : "models.strategies.default_strategy",
+            "module_class" : "DefaultStrategy",
+            "config_file" : "models/strategies/configs/default.json"
+        },
+        "default_binance": {
+            "exchange" : "binance",
+            "module" : "models.strategies.default_strategy",
+            "module_class" : "DefaultStrategy",
+            "config_file" : "models/strategies/configs/default.json"
+        },
+        "default_kucoin": {
+            "exchange" : "kucoin",
+            "module" : "models.strategies.default_strategy",
+            "module_class" : "DefaultStrategy",
+            "config_file" : "models/strategies/configs/default.json"
+        },
+        "XTZ-GBP": {
+            "exchange" : "coinbasepro",
+            "module" : "models.strategies.default_strategy",
+            "module_class" : "DefaultStrategy",
+            "config_file" : "models/strategies/configs/XTZ-GBP-default.json"
         }
     },
     "telegram": {

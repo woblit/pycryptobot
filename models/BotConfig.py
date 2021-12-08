@@ -16,6 +16,7 @@ from models.config import (
     kucoinConfigParser,
     dummyConfigParser,
     loggerConfigParser,
+    strategyConfigParser,
 )
 from models.exchange.Granularity import Granularity
 from models.exchange.ExchangesEnum import Exchange
@@ -71,6 +72,9 @@ class BotConfig:
         self.statdetail = False
         self.nobuynearhighpcnt = 3
         self.simresultonly = False
+
+        self.strategy_module_config = None
+        self.strategy_config = None
 
         self.disablebullonly = False
         self.disablebuynearhigh = False
@@ -230,6 +234,27 @@ class BotConfig:
                 self.enable_buy_next = True if "enable_buy_now" not in self.config["scanner"] else self.config["scanner"]["enable_buy_now"]
                 self.enable_atr72_pcnt = True if "enable_atr72_pcnt" not in self.config["scanner"] else self.config["scanner"]["enable_atr72_pcnt"]
                 self.enable_volume = False if "enable_volume" not in self.config["scanner"] else self.config["scanner"]["enable_volume"]
+
+            # handle multi-strategy config
+            if "strategy" in self.config:
+                if (self.market in self.config["strategy"]):
+                    #print(self.config["strategy"][self.market])
+                    if (self.exchange.value in self.config["strategy"][self.market]["exchange"]):
+                        # Found strategy override for this market - load local strategy configuration
+                        #print("FOUND MARKET RELATED CUSTOM STRATEGY - "+self.market)
+                        self.strategy_config = self.config["strategy"][self.market]
+                        strategyConfigParser(self, self.config["strategy"][self.market], self.cli_args)
+                        
+                elif ("default_"+self.exchange.value in self.config["strategy"]):
+                    # Found default config override - load default strategy config
+                    #print("FOUND DEFAULT STRATEGY - "+"default_"+self.exchange.value)
+                    self.strategy_config = self.config["strategy"]["default_"+self.exchange.value]
+                    strategyConfigParser(self, self.config["strategy"]["default_"+self.exchange.value], self.cli_args)
+            else:
+                self.strategy_config["strategy"]["exchange"] = self.exchange.value
+                self.strategy_config["strategy"]["module"] = "models.strategies.default_strategy"
+                self.strategy_config["strategy"]["module_class"] = "DefaultStrategy"
+                self.strategy_config["strategy"]["module"] = "models/strategies/configs/default.json"
 
             if "logger" in self.config:
                 loggerConfigParser(self, self.config["logger"])

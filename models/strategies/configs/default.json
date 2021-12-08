@@ -1,0 +1,53 @@
+{
+    "binance": {
+        "config" : {
+            "sellatloss" : 0,
+            "sellatresistance" : 0,
+            "trailingstoploss" : -1.5,
+            "trailingstoplosstrigger" : 5,
+            "nosellmaxpcnt" : 3,
+            "nosellminpcnt" : -3,
+            "disablebullonly" : 0,
+            "disablebuynearhigh" : 1,
+            "disablebuymacd" : 0,
+            "disablebuyobv" : 1,
+            "disablebuyelderray" : 0,
+            "disablefailsafefibonaccilow" : 1,
+            "disableprofitbankreversal" : 0
+        }
+    },
+    "coinbasepro": {
+        "config" : {
+            "sellatloss" : 0,
+            "sellatresistance" : 0,
+            "trailingstoploss" : -1.5,
+            "trailingstoplosstrigger" : 5,
+            "nosellmaxpcnt" : 3,
+            "nosellminpcnt" : -3,
+            "disablebullonly" : 0,
+            "disablebuynearhigh" : 1,
+            "disablebuymacd" : 0,
+            "disablebuyobv" : 1,
+            "disablebuyelderray" : 0,
+            "disablefailsafefibonaccilow" : 1,
+            "disableprofitbankreversal" : 0
+        }
+    },
+    "kucoin": {
+        "config" : {
+            "sellatloss" : 0,
+            "sellatresistance" : 0,
+            "trailingstoploss" : -1.5,
+            "trailingstoplosstrigger" : 5,
+            "nosellmaxpcnt" : 3,
+            "nosellminpcnt" : -3,
+            "disablebullonly" : 0,
+            "disablebuynearhigh" : 1,
+            "disablebuymacd" : 0,
+            "disablebuyobv" : 1,
+            "disablebuyelderray" : 0,
+            "disablefailsafefibonaccilow" : 1,
+            "disableprofitbankreversal" : 0
+        }
+    }
+}
