@@ -25,11 +25,9 @@ def merge_config_and_args(exchange_config, args):
     new_config = {}
     if "config" in exchange_config and exchange_config["config"] is not None:
         new_config = {**exchange_config["config"]}
-        print ("NEW CONFIG ",new_config)
     for (key, value) in args.items():
         if value is not None and value is not False:
             new_config[key] = value
-            print ("NEW CONFIG AFTER ARGUMENTS ",new_config)
     return new_config
 
 def parser(app, strategy_config, args={}):
