@@ -21,10 +21,15 @@ def parseMarket(market):
     base_currency, quote_currency = market.split('-', 2)
     return market, base_currency, quote_currency
 
-def merge_config(exchange_config):
+def merge_config_and_args(exchange_config, args):
     new_config = {}
     if "config" in exchange_config and exchange_config["config"] is not None:
         new_config = {**exchange_config["config"]}
+        print ("NEW CONFIG ",new_config)
+    for (key, value) in args.items():
+        if value is not None and value is not False:
+            new_config[key] = value
+            print ("NEW CONFIG AFTER ARGUMENTS ",new_config)
     return new_config
 
 def parser(app, strategy_config, args={}):
@@ -70,7 +75,7 @@ def parser(app, strategy_config, args={}):
 
     #print(strategy_custom_config[strategy_config["exchange"]])
 
-    config = merge_config(strategy_custom_config[strategy_config["exchange"]])
+    config = merge_config_and_args(strategy_custom_config[strategy_config["exchange"]],args)
 
     defaultConfigParse(app, config)
 
