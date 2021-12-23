@@ -1,0 +1,30 @@
+{
+	"coinbasepro": {
+		"quote_currency": [
+			"BTC"
+		],
+		"tv_screener_ratings": [
+			"STRONG_BUY"
+		],
+		"volume_threshold": 1000,
+		"minimum_volume": 1000,
+		"volatility_threshold": 9,
+		"granularity": 3600,
+		"selection_score": 8,
+		"adx_threshold": 25
+	},
+	"kucoin": {
+		"quote_currency": [
+			"BTC"
+		],
+		"volume_threshold": 1000,
+		"minimum_volume": 1000,
+		"volatility_threshold": 9,
+		"tv_screener_ratings": [
+			"STRONG_BUY"
+		],
+		"selection_score": 8,
+		"granularity": 3600,
+		"adx_threshold": 25
+	}
+}
