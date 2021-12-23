@@ -8,6 +8,7 @@
 		],
 		"volume_threshold": 1000,
 		"minimum_volume": 1000,
+		"minimum_quote_price": 0.0000001,
 		"volatility_threshold": 9,
 		"granularity": 3600,
 		"selection_score": 8,
@@ -19,6 +20,7 @@
 		],
 		"volume_threshold": 1000,
 		"minimum_volume": 1000,
+		"minimum_quote_price": 0.0000001,
 		"volatility_threshold": 9,
 		"tv_screener_ratings": [
 			"STRONG_BUY"

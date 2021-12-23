@@ -47,6 +47,7 @@ def load_configs():
                 binance_app.volatility_threshold = exchange_config.get('volatility_threshold', 9)
                 binance_app.minimum_volume = exchange_config.get('minimum_volume', 20000)
                 binance_app.volume_threshold = exchange_config.get('volume_threshold', 20000)
+                binance_app.minimum_quote_price = exchange_config.get('minimum_quote_price', 0.0000001)
                 binance_app.selection_score = exchange_config.get('selection_score', 10)
                 binance_app.tv_screener_ratings = [rating.upper() for rating in exchange_config.get('tv_screener_ratings', ['STRONG_BUY'])]
                 exchanges_loaded.append(binance_app)
@@ -59,6 +60,7 @@ def load_configs():
                 coinbase_app.volatility_threshold = exchange_config.get('volatility_threshold', 9)
                 coinbase_app.minimum_volume = exchange_config.get('minimum_volume', 20000)
                 coinbase_app.volume_threshold = exchange_config.get('volume_threshold', 20000)
+                coinbase_app.minimum_quote_price = exchange_config.get('minimum_quote_price', 0.0000001)
                 coinbase_app.selection_score = exchange_config.get('selection_score', 10)
                 coinbase_app.tv_screener_ratings = [rating.upper() for rating in exchange_config.get('tv_screener_ratings', ['STRONG_BUY'])]
                 exchanges_loaded.append(coinbase_app)
@@ -71,6 +73,7 @@ def load_configs():
                 kucoin_app.volatility_threshold = exchange_config.get('volatility_threshold', 9)
                 kucoin_app.minimum_volume = exchange_config.get('minimum_volume', 20000)
                 kucoin_app.volume_threshold = exchange_config.get('volume_threshold', 20000)
+                kucoin_app.minimum_quote_price = exchange_config.get('minimum_quote_price', 0.0000001)
                 kucoin_app.selection_score = exchange_config.get('selection_score', 10)
                 kucoin_app.tv_screener_ratings = [rating.upper() for rating in exchange_config.get('tv_screener_ratings', ['STRONG_BUY'])]
                 exchanges_loaded.append(kucoin_app)
@@ -132,6 +135,9 @@ def process_screener_data(app, markets, quote_currency):
             adx_posi_di = Decimal(ta.indicators['ADX+DI'])
             adx_neg_di = Decimal(ta.indicators['ADX-DI'])
             volume = Decimal(ta.indicators['volume'])
+            high = Decimal(ta.indicators['high']).quantize(Decimal('1e-{}'.format(8)))
+            low = Decimal(ta.indicators['low']).quantize(Decimal('1e-{}'.format(8)))
+            close = Decimal(ta.indicators['close']).quantize(Decimal('1e-{}'.format(8)))
             macd = Decimal(ta.indicators['MACD.macd'])
             macd_signal = Decimal(ta.indicators['MACD.signal'])
             bollinger_upper = Decimal(ta.indicators['BB.upper'])
@@ -182,6 +188,8 @@ def process_screener_data(app, markets, quote_currency):
                 #print(f"Volatility({volatility} is above {app.volatility_threshold}")
                 score += 1
             if volume < app.minimum_volume:
+                score -= 100
+            if close < app.minimum_quote_price:
                 score -= 100
             if 30 >= rsi > 20:
                 score += 1
